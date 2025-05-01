@@ -9,8 +9,9 @@ zip varchar2(5) not null,
 CONSTRAINT CHK_cusID_8dig CHECK (cusID BETWEEN 10000000 AND 99999999),
 CONSTRAINT CHK_zip_5dig CHECK (zip BETWEEN '10000' AND '99999')
 );
-DROP TABLE PRODUCTS CASCADE CONSTRAINTS;
-CREATE TABLE PRODUCTS (
+
+DROP TABLE PRODUCT CASCADE CONSTRAINTS;
+CREATE TABLE PRODUCT (
 productID number(8,0) primary key,
 quantity number(25,0) not null,
 name varchar2(30) not null,
@@ -21,8 +22,8 @@ CONSTRAINT CHK_quantity CHECK (quantity >= 0),
 CONSTRAINT CHK_price CHECK (price > 0)
 );
 
-DROP TABLE ORDERS CASCADE CONSTRAINTS;
-CREATE TABLE ORDERS (
+DROP TABLE ORDER CASCADE CONSTRAINTS;
+CREATE TABLE ORDER (
 orderID number(8,0) primary key,
 customerID number(8,0) not null,
 payment number(20,2) not null,
