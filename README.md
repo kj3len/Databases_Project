@@ -13,4 +13,5 @@ Basic Instructions on how to operate:
 
 1. Connect to an Oracle SQL Database using a SQL client such as SQLDeveloper.
 2. Run the two scripts in order: CreatingProjectTables.sql > InsertProjectData.sql
+
 Optional: To verify the tables and data were inserted successfully, use SELECT queries after executing the two files provided (ex. SELECT * FROM CUSTOMER).
