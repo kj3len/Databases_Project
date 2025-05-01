@@ -1,3 +1,4 @@
+DROP TABLE CUSTOMER CASCADE CONSTRAINTS;
 CREATE TABLE CUSTOMER (
 fname varchar2(15) not null,
 lname varchar2(20) not null,
@@ -8,7 +9,7 @@ zip varchar2(5) not null,
 CONSTRAINT CHK_cusID_8dig CHECK (cusID BETWEEN 10000000 AND 99999999),
 CONSTRAINT CHK_zip_5dig CHECK (zip BETWEEN '10000' AND '99999')
 );
-
+DROP TABLE PRODUCTS CASCADE CONSTRAINTS;
 CREATE TABLE PRODUCTS (
 productID number(8,0) primary key,
 quantity number(25,0) not null,
@@ -20,6 +21,7 @@ CONSTRAINT CHK_quantity CHECK (quantity >= 0),
 CONSTRAINT CHK_price CHECK (price > 0)
 );
 
+DROP TABLE ORDERS CASCADE CONSTRAINTS;
 CREATE TABLE ORDERS (
 orderID number(8,0) primary key,
 customerID number(8,0) not null,
@@ -34,6 +36,7 @@ CONSTRAINT CHK_orderStatus CHECK (orderStatus IN ('Pending', 'Shipped','Delivere
 CONSTRAINT CHK_payment CHECK (payment > 0)
 );
 
+DROP TABLE SHIPPING CASCADE CONSTRAINTS;
 CREATE TABLE SHIPPING (
 trackingID number(10,0) primary key,
 customerID number(8,0) not null,
