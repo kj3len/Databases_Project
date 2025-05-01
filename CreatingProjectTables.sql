@@ -13,7 +13,7 @@ CREATE TABLE CUSTOMER (
     zip varchar2(5) not null,
 
     CONSTRAINT CHK_cusID_8dig CHECK (cusID BETWEEN 10000000 AND 99999999),
-    CONSTRAINT CHK_zip_5dig CHECK (zip BETWEEN '10000' AND '99999')
+    CONSTRAINT chk_zip_length CHECK (REGEXP_LIKE(zip, '^\d{5}$'))
 );
 
 -- Create PRODUCT table
@@ -45,7 +45,7 @@ CREATE TABLE PURCHASE (
 
 -- Create SHIPPING table
 CREATE TABLE SHIPPING (
-    trackingID number(10,0) primary key,
+    trackingID number(10,0),
     customerID number(8,0) not null,
     deliv_date DATE not null,
     purchaseID number(8,0) not null,
@@ -54,5 +54,5 @@ CREATE TABLE SHIPPING (
     CONSTRAINT FK_ship_customerID FOREIGN KEY (customerID) REFERENCES CUSTOMER(cusID) ON DELETE SET NULL,
     CONSTRAINT FK_purchaseID FOREIGN KEY (purchaseID) REFERENCES PURCHASE(purchaseID) ON DELETE SET NULL,
     CONSTRAINT CHK_trackingID_10dig CHECK (trackingID BETWEEN 1000000000 AND 9999999999),
-    CONSTRAINT CHK_delivZip_5dig CHECK (deliv_zip BETWEEN '10000' AND '99999')
+    CONSTRAINT chk_delivzip_length CHECK (REGEXP_LIKE(deliv_zip, '^\d{5}$'))
 );
